@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: capsula-do-tempo
+  datasource:
+    url: jdbc:postgresql://${DATABASE_SERVER:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:capsula_do_tempo}
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+  jpa:
+    show-sql: false
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  mail:
+    protocol: smtp
+    host: sandbox.smtp.mailtrap.io
+    port: 2525
+    username: 33af64d13813ee
+    password: 7c31335fe7616e
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration
+server:
+  port: 8080
+logging:
+  file:
+    name: appfile.log
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["routes"]
