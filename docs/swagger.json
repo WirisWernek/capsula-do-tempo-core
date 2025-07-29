@@ -1,0 +1,735 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "Capsula do Tempo API",
+		"description": "API de gerenciamento de cápsulas do tempo para armazenar mensagens e fotos.",
+		"termsOfService": "wiriswernek",
+		"contact": {
+			"name": "Wiris Wernek",
+			"email": "wiriswernek@gmail.com"
+		},
+		"license": {
+			"name": "licence",
+			"url": "license"
+		},
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080",
+			"description": "Generated server url"
+		}
+	],
+	"tags": [
+		{
+			"name": "Capsula",
+			"description": "Endpoints for managing time capsules and their messages."
+		}
+	],
+	"paths": {
+		"/api/capsulas/{id}": {
+			"get": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Obtém uma cápsula de tempo pelo ID.",
+				"operationId": "getCapsulaById",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CapsulaDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Atualiza uma cápsula de tempo existente.",
+				"operationId": "updateCapsula",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CapsulaDTO"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CapsulaDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Exclui uma cápsula de tempo pelo ID.",
+				"operationId": "deleteCapsula",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/capsulas/{capsulaId}/mensagens/{id}": {
+			"get": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Obtém uma mensagem específica de uma cápsula de tempo pelo ID.",
+				"operationId": "getMensagemById",
+				"parameters": [
+					{
+						"name": "capsulaId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MensagemDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Atualiza uma mensagem em uma cápsula de tempo.",
+				"operationId": "updateMensagem",
+				"parameters": [
+					{
+						"name": "capsulaId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/MensagemDTO"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MensagemDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Exclui uma mensagem de uma cápsula de tempo pelo ID.",
+				"operationId": "deleteMensagem",
+				"parameters": [
+					{
+						"name": "capsulaId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/capsulas/{id}/mensagens": {
+			"get": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Obtém todas as mensagens de uma cápsula de tempo pelo ID.",
+				"operationId": "getMensagensByCapsulaId",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/MensagemDTO"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Cria uma nova mensagem em uma cápsula de tempo.",
+				"operationId": "createMensagem",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/MensagemDTO"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MensagemDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/capsulas/": {
+			"get": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Retorna todas as cápsulas de tempo.",
+				"operationId": "getAllCapsulas",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/CapsulaDTO"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Capsula"
+				],
+				"summary": "Cria uma nova cápsula de tempo.",
+				"operationId": "createCapsula",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CapsulaDTO"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CapsulaDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"406": {
+						"description": "Not Acceptable",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiErrors"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"ApiErrors": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"uniqueItems": true,
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"CapsulaDTO": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"nome": {
+						"type": "string"
+					},
+					"qtdMensagens": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"dataCriacao": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"dataExpiracao": {
+						"type": "string",
+						"format": "date"
+					}
+				}
+			},
+			"MensagemDTO": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"conteudo": {
+						"type": "string"
+					},
+					"nomeCriador": {
+						"type": "string"
+					},
+					"emailCriador": {
+						"type": "string"
+					},
+					"capsulaId": {
+						"type": "string"
+					},
+					"dataEnvio": {
+						"type": "string",
+						"format": "date"
+					},
+					"dataCriacao": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"eviada": {
+						"type": "boolean"
+					}
+				}
+			}
+		}
+	}
+}

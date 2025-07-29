@@ -35,7 +35,7 @@ server:
   port: 8080
 logging:
   file:
-    name: appfile.log
+    name: log/appfile.log
 management:
   endpoints:
     web:
